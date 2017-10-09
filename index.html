@@ -15,6 +15,9 @@
     </style>
   </head>
   <body>
+    <div id="myHeader">
+      <button id="left">Left</button>
+    </div>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
@@ -24,6 +27,12 @@
     <script>
       $(function () {
         var socket = io();
+        $("#left").on("click",function(e){
+          console.log("you clicked left");
+          socket.emit('chat message',"You clicked left");
+        })  
+
+        
         $('form').submit(function(){
           socket.emit('chat message', $('#m').val());
           $('#m').val('');
